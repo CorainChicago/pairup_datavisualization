@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+        <script src="js/jQuery.js"></script>
+        <script type="text/javascript" href="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        <script>
+        $.ajax({type: "GET",
+          url: "missouri_farmers.json",
+          dataType: "json",
+          success: function(data) {
+            console.log(data);
+            drawTable(data);
+         },
+          error: function(xhr, status, e) {
+            console.log("fail");
+          }
+          });
+
+          function drawTable(data) {
+            console.log(data. data.length);
+              for (var i = 0; i < data.data.length; i++) {
+                  drawRow(data.data[i]);
+              }
+          }
+
+          function drawRow(rowData) {
+              var row = $("<tr />");
+              $(".mainTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+              row.append($("<td>" + rowData[8] + "</td>"));
+              row.append($("<td>" + rowData[11] + "</td>"));
+              row.append($("<td>" + rowData[14] + "</td>"));
+              row.append($("<td>" + rowData[17] + "</td>"));
+          }
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.tablesorter.pager.css">
+        <link rel="stylesheet" type="text/css" href="css/my_css.css">
+        <title>Missouri Farmers Markets</title>
+      </head>
+<body>
+  <h1>Missouri Farmers Markets</h1>
+    <table id="myTable" class="tablesorter">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>County</th>
+          <th>Email Address</th>
+        </tr>
+   </thead>
+  <tbody id = "myTable" class ="mainTable">
+</tbody>
+</table>
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+      console.log("Sorter");
+        $("#myTable").tablesorter(); 
+    } 
+); 
+</script>
+        </script>
+
+
+        
+        <div id="story"></div>
+      </body>
+      </html>
+
+<!-- Below is the code to run a python server -->
+<!-- $ python -m SimpleHTTPServer 8080 -->
+
